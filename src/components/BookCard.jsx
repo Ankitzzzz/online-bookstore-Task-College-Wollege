@@ -1,5 +1,4 @@
-import React from 'react';
-import { Star, ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
 
 const BookCard = ({ book, onClick }) => {
@@ -16,9 +15,8 @@ const BookCard = ({ book, onClick }) => {
         {[...Array(5)].map((_, i) => (
           <Star
             key={i}
-            className={`w-4 h-4 ${
-              i < Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-            }`}
+            className={`w-4 h-4 ${i < Math.round(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+              }`}
           />
         ))}
         <span className="ml-1 text-sm text-gray-600">({rating})</span>
@@ -64,9 +62,13 @@ const BookCard = ({ book, onClick }) => {
         </div>
 
         {/* Price and Button */}
+        {/* Price and Button */}
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold text-green-500">
-            ${book.price.toFixed(2)}
+            {book.price.toLocaleString('en-IN', {
+              style: 'currency',
+              currency: 'INR'
+            })}
           </span>
           <button
             onClick={handleAddToCart}
